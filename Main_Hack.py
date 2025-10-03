@@ -10,9 +10,9 @@ vowel_var = ['a', 'e', 'i', 'o', 'u']
 inventory = []
 def prompt():
     if not inventory:
-        console.print(f"[bold green]Hack Quest\n[bold green]----------------------\n[green italic]Cracking codes like 1998.\n[bold green]----------------------\n[Yellow]Inventory: Empty, Coins: {Coins}")
+        console.print(f"[bold green]Hack Quest\n[bold green]----------------------\n[green][italic]Cracking codes like 1998.[/italic]\n[bold green]----------------------\n[bold yellow]Inventory: Empty │ Coins: {Coins}")
     if inventory:
-        console.print(f"[bold green]Hack Quest\n[bold green]----------------------\n[green italic]Cracking codes like 1998.\n[bold green]----------------------\n[Yellow]Inventory: {inventory}, Coins: {Coins}") 
+        console.print(f"[bold green]Hack Quest\n[bold green]----------------------\n[green][italic]Cracking codes like 1998.[/italic]\n[bold green]----------------------\n[bold yellow]Inventory: {inventory} │ coins: {Coins}") 
 map_rooms = { 'The HQ' : {'East' : 'Main Street'},
              'Main Street' : {'West' : 'The HQ', 'North' : 'Internet Cafe', 'South' : 'ATM', 'East' : 'East Street'},
              'Internet Cafe' : {'South' : 'Main Street'},
