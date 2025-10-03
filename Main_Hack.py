@@ -11,6 +11,18 @@ def clear():
 def prompt():
     clear()
     console.print(f"[bold green]Hack Quest\n[bold green]----------------------\n[green][italic]Cracking codes like 1998.[/italic]\n[bold green]----------------------")
+    a = input("Press Y to start, H for help or Q to quit: ").lower()
+    if a == 'y':
+        Game()
+    elif a == 'h':
+        clear()
+        console.print("[bold green]Instructions\n[bold green]----------------------\n[green]Welcome to Hack Quest! Your objective is to hack into the bank's vault and steal the money without getting caught. You can move between rooms, collect items, and hack systems to progress. Be careful, as some actions may alert the authorities!\n\n[bold green]Commands:\n[green]- Move: Type the direction you want to go (North, South, East, West).\n- Get Item: Type 'get [item name]' to collect an item in the room.\n- Hack: Type 'hack [system name]' to attempt hacking a system.\n- Buy Item: Type 'buy [item name]' to purchase an item if you have enough coins.\n- Inventory: Type 'inventory' to check your collected items and coins.\n- Quit: Type 'q' to exit the game.\n\n[bold green]Good luck, hacker!")
+        input("\nPress Enter to return to the main menu...")
+        prompt()
+    elif a == 'q':
+        clear()
+        console.print("[bold green]Thanks for playing Hack Quest! Goodbye!")
+        exit()
 def Game():
     global current_room, Coins, inventory
     while True:
