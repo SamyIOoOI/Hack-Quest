@@ -12,6 +12,7 @@ def prompt():
     clear()
     console.print(f"[bold green]Hack Quest\n[bold green]----------------------\n[green][italic]Cracking codes like 1998.[/italic]\n[bold green]----------------------")
 def Game():
+    global current_room, Coins, inventory
     while True:
         clear()
         if not inventory:
@@ -20,16 +21,16 @@ def Game():
             console.print(f"[bold green]Hack Quest\n[bold green]----------------------\n[green][italic]Cracking codes like 1998.[/italic]\n[bold green]----------------------\n[bold yellow]Inventory: {inventory} │ coins: {Coins}") 
 
 map_rooms = { 'The HQ' : {'East' : 'Main Street', 'Item': 'Old Laptop'},
-             'Main Street' : {'West' : 'The HQ', 'North' : 'Internet Cafe', 'South' : 'ATM', 'East' : 'East Street', 'item': 'Lost Wallet'},
-             'Internet Cafe' : {'South' : 'Main Street'},
-             'ATM' : {'North' : 'Main Street'},
-             'East Street' : {'West' : 'Main Street', 'East' : 'Bank Entrance', 'North' : 'Apartment', 'South' : 'Shopping Center'},
-             'Apartment' : {'South' : 'East Street'},
-             'Shopping Center' : {'North' : 'East Street'},
-             'Bank Entrance' : {'West' : 'East Street', 'East' : 'Bank Office Room', 'North' : 'Bank Server Room', 'South' : 'Bank Archives Room'},
-             'Bank Archives Room' : {'North' : 'Bank Entrance'},
-             'Bank Server Room' : {'South' : 'Bank Entrance'},
-             'Bank Office Room' : {'West' : 'Bank Entrance', 'East' : 'Vault'},
-             'Vault' : {'West' : 'Bank Office Room'}}
+             'Main Street' : {'West' : 'The HQ', 'North' : 'Internet Cafe', 'South' : 'ATM', 'East' : 'East Street', 'Item': 'Lost Wallet'},
+             'Internet Cafe' : {'South' : 'Main Street', 'Item' : 'Tip Jar'},
+             'ATM' : {'North' : 'Main Street', 'Hackable' : 'Cash'},
+             'East Street' : {'West' : 'Main Street', 'East' : 'Bank Entrance', 'North' : 'Apartment', 'South' : 'Shopping Center', 'Item' : 'Empty USB'},
+             'Apartment' : {'South' : 'East Street', 'Item' : 'Bank Disguise'},
+             'Shopping Center' : {'North' : 'East Street', 'Buy Item' : 'New Laptop'},
+             'Bank Entrance' : {'West' : 'East Street', 'East' : 'Bank Office Room', 'North' : 'Bank Server Room', 'South' : 'Bank Archives Room', 'Hackable' : 'Camera System'},
+             'Bank Archives Room' : {'North' : 'Bank Entrance', 'Hackable' : 'Archive Database'},
+             'Bank Server Room' : {'South' : 'Bank Entrance', 'Hackable' : 'Bank Servers'},
+             'Bank Office Room' : {'West' : 'Bank Entrance', 'East' : 'Vault', 'Hackable' : "Manager's pc"},
+             'Vault' : {'West' : 'Bank Office Room', 'Hackable' : 'Vault Protection System'}}
 clear()
 prompt()
