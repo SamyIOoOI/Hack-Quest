@@ -11,6 +11,7 @@ stolen_atm = False
 hacked_camera = False
 hacked_database = False
 hacked_archive = False
+hacked_office = False
 def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 def prompt():
@@ -29,7 +30,8 @@ def prompt():
         console.print("[bold green]Thanks for playing Hack Quest! Goodbye!")
         exit()
 def Game():
-    global current_room, Coins, inventory, stolen_atm, hacked_camera
+    global current_room, Coins, inventory, stolen_atm, hacked_camera, hacked_office, hacked_database, hacked_archive
+    msg = ''
     while True:
         clear()
         if not inventory:
@@ -67,7 +69,8 @@ def Game():
             else:
                 msg = "There is no such item here."
         if action == 'Hack':
-            if 'Hackable' in map_rooms[current_room].keys():
+            item = item.lower()
+            if item in map_rooms[current_room].keys():
                 hackable_device = map_rooms[current_room]['Hackable']
                 if hackable_device == 'ATM Cash' and stolen_atm == False:
                                     if hackable_device == 'ATM Cash' and 'Old Laptop' in inventory or hackable_device == 'ATM Cash'and 'New Laptop' in inventory:
@@ -80,18 +83,32 @@ def Game():
                          hacked_camera = True
                      else:
                           msg = "You need the bank disguise from the apartment to do actions inside the bank."
-                elif hackable_device == 'Archive Database'
+                elif hackable_device == 'Archive Database' and hacked_archive == False and hacked_camera == True:
+                     if 'New Laptop' in inventory:
+                          msg = 'You have successfully hacked into the bank archives and found the codes. You now need to hack the bank servers.'
+                          hacked_archive = True
+                     else:
+                          msg = "You need to hack the cameras first.You also need a better laptop to hack the bank systems. Try buying one from the shopping center."
+                elif hackable_device == 'Bank Servers' and hacked_database == False and hacked_archive == True:
+                     msg = "You have successfully hacked into the bank servers and found the manager's PC digits. Proceed to the office area and hack the vault's security system blueprint and passcode."
+                     hacked_database = True
+                elif hackable_device == "Manager's pc" and hacked_database == True and hacked_office == False:
+                     msg = "You have successfully hacked into the manager's PC and found the vault's security system blueprint and passcode. Proceed to the vault and hack the protection system."
+                elif hackable_device == 'Vault Protection System' and hacked_office == True:
+                        msg = "You have successfully hacked into the bank's vault protection system. The cash is yours!\nThank you for playing Hack Quest!"
+                        coins += 1000000
+                        break
 map_rooms = { 'The HQ' : {'East' : 'Main Street', 'Item': 'Old Laptop'},
              'Main Street' : {'West' : 'The HQ', 'North' : 'Internet Cafe', 'South' : 'ATM', 'East' : 'East Street', 'Item': 'Lost Wallet'},
              'Internet Cafe' : {'South' : 'Main Street', 'Item' : 'Tip Jar'},
              'ATM' : {'North' : 'Main Street', 'Hackable' : 'ATM Cash'},
              'East Street' : {'West' : 'Main Street', 'East' : 'Bank Entrance', 'North' : 'Apartment', 'South' : 'Shopping Center', 'Item' : 'Empty USB'},
              'Apartment' : {'South' : 'East Street', 'Item' : 'Bank Disguise'},
-             'Shopping Center' : {'North' : 'East Street', 'Buy Item' : 'New Laptop'},
-             'Bank Entrance' : {'West' : 'East Street', 'East' : 'Bank Office Room', 'North' : 'Bank Server Room', 'South' : 'Bank Archives Room', 'Hackable' : 'Camera System'},
-             'Bank Archives Room' : {'North' : 'Bank Entrance', 'Hackable' : 'Archive Database'},
-             'Bank Server Room' : {'South' : 'Bank Entrance', 'Hackable' : 'Bank Servers'},
-             'Bank Office Room' : {'West' : 'Bank Entrance', 'East' : 'Vault', 'Hackable' : "Manager's pc"},
-             'Vault' : {'West' : 'Bank Office Room', 'Hackable' : 'Vault Protection System'} }
+             'Shopping Center' : {'North' : 'East Street', 'Buy Item' : 'new Laptop'},
+             'Bank Entrance' : {'West' : 'East Street', 'East' : 'Bank Office Room', 'North' : 'Bank Server Room', 'South' : 'Bank Archives Room', 'Hackable' : 'camera System'},
+             'Bank Archives Room' : {'North' : 'Bank Entrance', 'Hackable' : 'archive Database'},
+             'Bank Server Room' : {'South' : 'Bank Entrance', 'Hackable' : 'bank Servers'},
+             'Bank Office Room' : {'West' : 'Bank Entrance', 'East' : 'Vault', 'Hackable' : "manager's pc"},
+             'Vault' : {'West' : 'Bank Office Room', 'Hackable' : 'vault Protection System'} }
 clear()
 prompt()
