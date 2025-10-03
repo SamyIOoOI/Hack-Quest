@@ -27,6 +27,7 @@ def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 def prompt():
     clear()
+    console.print("You can access the map here: [underline blue]https://github.com/SamyIOoOI/Hack-Quest/blob/main/Map.png[/underline blue]")
     a = input("Press Y to start, H for help or Q to quit: ").lower()
     if a == 'y':
         Game()
@@ -169,9 +170,11 @@ def Game():
                         hacking_screen()
                         msg = "You have successfully hacked into the bank's vault protection system. The cash is yours!\nThank you for playing Hack Quest!"
                         Coins += 1000000
-                        break
                     else:
                         msg = "You can't hack this system right now."
+                    if Coins >= 1000000:
+                        console.print("[bold purple] You have successfully hacked into the bank's vault protection system. The cash is yours!\n[bold magenta] Congratulations, you have completed Hack Quest and earned $1,000,000!\n[bold green]Thank you for playing Hack Quest!")
+                        break
             else:
                 msg = "There is nothing to hack here."
 map_rooms = { 'The HQ' : {'East' : 'Main Street', 'Item': 'Old Laptop'},
