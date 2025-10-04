@@ -1,4 +1,5 @@
 import os
+import sys
 import time
 from tkinter import Button, Label, LabelFrame, Listbox, PhotoImage
 from tkinter.ttk import Progressbar
@@ -17,6 +18,12 @@ hacked_token = False
 msg = ''
 start_game = False
 start_instructions = False
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, "images", relative_path)
 gui = tk.Tk()
 gui.title("Hack Quest")
 gui.geometry("700x450")
@@ -53,4 +60,33 @@ password_patterns = {'First' : {'1': '7x9kQwTz8pLk3Jv', '2':'4mN2bXcV9kQwTz', '3
                        'Fourth' : {'1':'tR5qLp8nM', '2':'2tR5qLp3bN', '3':'4tR5qL5vGtR5qLp', '4':'6tR5qLp7kL', 'Answer':'tR5qLp'},
                         'Fifth' : {'1':'1Qp8zLm2b3', '2':'4nMQp8zLm', '3':'5Qp8zLm6t7', '4':'8pQp8zLm9N', 'Answer':'Qp8zLm'},
                          'Sixth' : {'1':'vT3kXy1a2b', '2':'3c4vT3kXy5d', '3':'6e7f8vT3kXy', '4':'9g0h1vT3kXy2', 'Answer':'vT3kXy'} }
+## Room & Item Images (must be loaded after root window is created)
+def load_images():
+    global hq, old_laptop, main_street, lost_wallet, internet_cafe, tip_jar, atm, atm_cash, apartment, disguise, new_laptop, usb, east_street, shopping_center, bank_entrance, cameras, server_room, servers, archive_room, archives, office_room, office, vault_room, vault
+    hq = PhotoImage(file=resource_path('hq_converted.png'))
+    old_laptop = PhotoImage(file=resource_path('oldlaptop_converted.png'))
+    main_street = PhotoImage(file=resource_path('mainstreet_converted.png'))
+    lost_wallet = PhotoImage(file=resource_path('lostwallet_converted.png'))
+    internet_cafe = PhotoImage(file=resource_path('cafe_converted.png'))
+    tip_jar = PhotoImage(file=resource_path('tipjar_converted.png'))
+    atm = PhotoImage(file=resource_path('atm_converted.png'))
+    atm_cash = PhotoImage(file=resource_path('atmcash_converted.png'))
+    apartment = PhotoImage(file=resource_path('apartment_converted.png'))
+    disguise = PhotoImage(file=resource_path('disguise_converted.png'))
+    new_laptop = PhotoImage(file=resource_path('newlaptop_converted.png'))
+    usb = PhotoImage(file=resource_path('hackingusb_converted.png'))
+    east_street = PhotoImage(file=resource_path('eaststreet_converted.png'))
+    shopping_center = PhotoImage(file=resource_path('shoppingcenter_converted.png'))
+    bank_entrance = PhotoImage(file=resource_path('bank_converted.png'))
+    cameras = PhotoImage(file=resource_path('camera.png'))
+    server_room = PhotoImage(file=resource_path('bankservers_converted.png'))
+    servers = PhotoImage(file=resource_path('servers.png'))
+    archive_room = PhotoImage(file=resource_path('bankarchive_converted.png'))
+    archives = PhotoImage(file=resource_path('archive.png'))
+    office_room = PhotoImage(file=resource_path('bankoffice_converted.png'))
+    office = PhotoImage(file=resource_path('office.png'))
+    vault_room = PhotoImage(file=resource_path('vault_converted.png'))
+    vault = PhotoImage(file=resource_path('vaultroom.png'))
+load_images()
+## /Room & Item Images
 gui.mainloop()
