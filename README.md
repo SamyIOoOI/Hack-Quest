@@ -1,7 +1,7 @@
 
 # Hack Quest (CLI Version)
 
-Hack Quest is a text-based adventure game where you play as a hacker trying to break into a bank vault. Navigate rooms, collect items, hack systems, and avoid getting caught! ## This version is a terminal program utilizing text commands
+Hack Quest is a adventure game where you play as a hacker trying to break into a bank vault. Navigate rooms, collect items, hack systems, and avoid getting caught! ## This version is a terminal program utilizing text commands
 
 ## Features
 
