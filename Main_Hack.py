@@ -19,6 +19,7 @@ def hacking_screen():
     global hacked_token, hacked_value
     if hacked_value == 1:
         console.print("[bold green]Hack this system by finding the repeating pattern in the passwords below: ")
+        console.print("[yellow]If you intend on cheating... https://github.com/SamyIOoOI/Hack-Quest/blob/main/passwords_patterns.txt")
         correct_answer = password_patterns['First']['Answer']
         console.print(f"[bold yellow]{password_patterns['First']['1']}\n{password_patterns['First']['2']}\n{password_patterns['First']['3']}\n{password_patterns['First']['4']}")
         user_answer = input("Enter the repeating pattern: ").strip().lower()
@@ -30,6 +31,7 @@ def hacking_screen():
             hacked_token = False
     if hacked_value == 2:
         console.print("[bold green]Hack this system by finding the repeating pattern in the passwords below: ")
+        console.print("[yellow]If you intend on cheating... https://github.com/SamyIOoOI/Hack-Quest/blob/main/passwords_patterns.txt")
         correct_answer = password_patterns['Second']['Answer']
         console.print(f"[bold yellow]{password_patterns['Second']['2']}\n{password_patterns['Second']['2']}\n{password_patterns['Second']['3']}\n{password_patterns['Second']['4']}")
         user_answer = input("Enter the repeating pattern: ").strip().lower()
@@ -41,6 +43,7 @@ def hacking_screen():
             hacked_token = False
     if hacked_value == 3:
         console.print("[bold green]Hack this system by finding the repeating pattern in the passwords below: ")
+        console.print("[yellow]If you intend on cheating... https://github.com/SamyIOoOI/Hack-Quest/blob/main/passwords_patterns.txt")
         correct_answer = password_patterns['Third']['Answer']
         console.print(f"bold yellow{password_patterns['Third']['1']}\n{password_patterns['Third']['2']}\n{password_patterns['Third']['3']}\n{password_patterns['Third']['4']}")
         user_answer = input("Enter the repeating pattern: ").strip().lower()
@@ -52,6 +55,7 @@ def hacking_screen():
             hacked_token = False
     if hacked_value == 4:
         console.print("[bold green]Hack this system by finding the repeating patterns in the passwords below: ")
+        console.print("[yellow]If you intend on cheating... https://github.com/SamyIOoOI/Hack-Quest/blob/main/passwords_patterns.txt")
         correct_answer = password_patterns['Fourth']['Answer']
         console.print(f"[bold yellow]{password_patterns['Fourth']['1']}\n{password_patterns['Fourth']['2']}\n{password_patterns['Fourth']['3']}\n{password_patterns['Fourth']['3']}\n{password_patterns['Fourth']['4']}")
         user_answer = input("Enter the repeating pattern: ").strip().lower()
@@ -63,6 +67,7 @@ def hacking_screen():
             hacked_token = False
     if hacked_value == 5:
         console.print("[bold green]Hack this system by finding repeating patterns in the passwords below: ")
+        console.print("[yellow]If you intend on cheating... https://github.com/SamyIOoOI/Hack-Quest/blob/main/passwords_patterns.txt")
         correct_answer = password_patterns['Fifth']['Answer']
         console.print(f"[bold yellow]{password_patterns['Fifth']['1']}\n{password_patterns['Fifth']['2']}\n{password_patterns['Fifth']['3']}\n{password_patterns['Fifth']['3']}\n{password_patterns['Fifth']['4']}")
         user_answer = input("Enter the repeating pattern: ").strip().lower()
@@ -74,6 +79,7 @@ def hacking_screen():
             hacked_token = False
     if hacked_value == 6:
         console.print("[bold green]Hack this system by finding repeating patterns in the passwords below: ")
+        console.print("[yellow]If you intend on cheating... https://github.com/SamyIOoOI/Hack-Quest/blob/main/passwords_patterns.txt")
         correct_answer = password_patterns['Sixth']['Answer']
         console.print(f"[bold yellow]{password_patterns['Sixth']['1']}\n{password_patterns['Sixth']['2']}\n{password_patterns['Sixth']['3']}\n{password_patterns['Sixth']['4']}")
         user_answer = input("Enter the repeating pattern: ").strip().lower()
