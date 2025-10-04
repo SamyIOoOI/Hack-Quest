@@ -1,6 +1,6 @@
 import os
 import time
-from tkinter import Button, Label, LabelFrame, Listbox
+from tkinter import Button, Label, LabelFrame, Listbox, PhotoImage
 from tkinter.ttk import Progressbar
 import tkinter as tk
 current_room = 'The HQ'
@@ -15,11 +15,26 @@ hacked_office = False
 hacked_value = 1
 hacked_token = False
 msg = ''
+start_game = False
+start_instructions = False
 gui = tk.Tk()
 gui.title("Hack Quest")
 gui.geometry("700x450")
 gui.config(bg="PeachPuff")
 gui.resizable(False, False)
+def check_dropdown():
+    print(selected_menu.get())
+prompt_variable = tk.StringVar()
+menu_list = ['Start', 'Instructions']
+selected_menu = tk.StringVar()
+drop_down = tk.OptionMenu(gui, selected_menu, *menu_list)
+drop_down.config(bg='light pink', borderwidth='1', relief='solid', width=60, height=1)
+prompt_variable.set("Choose Start to start, Instructions to learn how to play or close the window to exit.")
+prompt_label = tk.Label(gui, textvariable=prompt_variable, bg='light pink', font=("Arial", 12, 'bold'), borderwidth='2', wraplength=695, height=6, relief='solid')
+confirm_button = tk.Button(gui, text='Confirm', height=1, width=4, relief='solid', borderwidth=2, command=check_dropdown, bg='light pink')
+prompt_label.place(x=36, y=20)
+drop_down.place(x=80, y=300)
+confirm_button.place(x=297, y=360)
 map_rooms = { 'The HQ' : {'East' : 'Main Street', 'Item': 'Old Laptop'}, ## Map Database
              'Main Street' : {'West' : 'The HQ', 'North' : 'Internet Cafe', 'South' : 'ATM', 'East' : 'East Street', 'Item': 'Lost Wallet'},
              'Internet Cafe' : {'South' : 'Main Street', 'Item' : 'Tip Jar'},
