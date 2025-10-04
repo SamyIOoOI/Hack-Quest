@@ -7,7 +7,6 @@ Coins = 0
 vowel_var = ['a', 'e', 'i', 'o', 'u']
 inventory = []
 console = Console()
-last_move = ''
 stolen_atm = False
 hacked_camera = False
 hacked_database = False
@@ -15,8 +14,9 @@ hacked_archive = False
 hacked_office = False
 hacked_value = 1
 hacked_token = False
+msg = ''
 def hacking_screen():
-    global hacked_token
+    global hacked_token, hacked_value
     if hacked_value == 1:
         console.print("[bold green]Hack the system by finding the repeating pattern in the passwords below: ")
         correct_answer = password_patterns['First']['Answer']
@@ -35,7 +35,7 @@ def hacking_screen():
         user_answer = input("Enter the repeating pattern: ").strip().lower()
         if user_answer == correct_answer.lower():
             console.print("[bold green]You have successfully breached this system.")
-            hacked_token == True
+            hacked_token = True
         else:
             console.print("[bold red]Incorrect pattern. Hack failed.")
             hacked_token = False
@@ -57,7 +57,7 @@ def prompt():
         console.print("[bold green]Thanks for playing Hack Quest! Goodbye!")
         exit()
 def Game():
-    global current_room, Coins, inventory, stolen_atm, hacked_camera, hacked_office, hacked_database, hacked_archive
+    global current_room, Coins, inventory, stolen_atm, hacked_camera, hacked_office, hacked_database, hacked_archive, msg, hacked_token, hacked_value
     msg = ''
     while True:
         clear()
@@ -69,9 +69,9 @@ def Game():
             nearby_item = map_rooms[current_room]["Item"]
             if nearby_item not in inventory:
                 if nearby_item[0].lower() in vowel_var:
-                    console.print(f"[bold green] You see an[bold yellow] {nearby_item} [bold green]here. Type 'get' to pick it up.")
+                    console.print(f"[bold green]You see an[bold yellow] {nearby_item} [bold green]here. Type 'get' to pick it up.")
                 else:
-                    console.print(f"[bold green] You see a [bold yellow]{nearby_item} [bold green]here. Type 'get' to pick it up.")
+                    console.print(f"[bold green]You see a [bold yellow] {nearby_item} [bold green]here. Type 'get' to pick it up.")
         if 'Buy Item' in map_rooms[current_room]:
             shop_item = map_rooms[current_room]['Buy Item']
             console.print(f"[bold cyan]You can buy [bold yellow]{shop_item.title()}[bold cyan] here. Type 'buy {shop_item}' to purchase it.")
