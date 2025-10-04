@@ -16,8 +16,6 @@ hacked_office = False
 hacked_value = 1
 hacked_token = False
 msg = ''
-start_game = False
-start_instructions = False
 def resource_path(relative_path):
     try:
         base_path = sys._MEIPASS

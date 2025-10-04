@@ -1,7 +1,7 @@
 from rich import print
 from rich.console import Console
-import os
 import time
+import os
 current_room = 'The HQ'
 Coins = 0
 vowel_var = ['a', 'e', 'i', 'o', 'u']
