@@ -13,22 +13,38 @@ hacked_camera = False
 hacked_database = False
 hacked_archive = False
 hacked_office = False
+hacked_value = 1
+hacked_token = False
 def hacking_screen():
-    console.print("[bold green]Attempting to breach system...")
-    time.sleep(1.5)
-    console.print("[red]Attempt failed, switching to network sabotage...")
-    time.sleep(1.5)
-    console.print("[bold yellow]Target network identified...Injecting jammers..")
-    time.sleep(1.5)
-    console.print("[bold red]Jammers detected, targetting network nodes...")
-    time.sleep(1.5)
-    console.print("[bold green]Network nodes down, system breach successful!")
+    global hacked_token
+    if hacked_value == 1:
+        console.print("[bold green]Hack the system by finding the repeating pattern in the passwords below: ")
+        correct_answer = password_patterns['First']['Answer']
+        console.print(f"[bold yellow]{password_patterns['First']['1']}\n{password_patterns['First']['2']}\n{password_patterns['First']['3']}\n{password_patterns['First']['4']}")
+        user_answer = input("Enter the repeating pattern: ").strip().lower()
+        if user_answer == correct_answer.lower():
+            console.print("[bold green]You have successfully breached this system.")
+            hacked_token = True
+        else:
+            console.print("[bold red]Incorrect pattern. Hack failed.")
+            hacked_token = False
+    if hacked_value == 2:
+        console.print("[bold green]Hack the system by finding the repeating pattern in the passwords below: ")
+        correct_answer = password_patterns['Second']['Answer']
+        console.print(f"[bold yellow]{password_patterns['Second']['2']}\n{password_patterns['Second']['2']}\n{password_patterns['Second']['3']}\n{password_patterns['Second']['4']}")
+        user_answer = input("Enter the repeating pattern: ").strip().lower()
+        if user_answer == correct_answer.lower():
+            console.print("[bold green]You have successfully breached this system.")
+            hacked_token == True
+        else:
+            console.print("[bold red]Incorrect pattern. Hack failed.")
+            hacked_token = False
 def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 def prompt():
     clear()
     console.print("You can access the map here: [underline blue]https://github.com/SamyIOoOI/Hack-Quest/blob/main/Map.png[/underline blue]")
-    a = input("Press Y to start, H for help or Q to quit: ").lower()
+    a = input("Press Y to start, H to learn how to play or Q to quit: ").lower()
     if a == 'y':
         Game()
     elif a == 'h':
@@ -123,10 +139,15 @@ def Game():
                 if device == 'atm cash' and not stolen_atm:
                     if any(lap in [item.lower() for item in inventory] for lap in ['old laptop', 'new laptop']):
                         hacking_screen()
-                        Coins += 250
-                        msg = "You have successfully hacked the ATM and withdrawn $250!"
-                        stolen_atm = True
-                        map_rooms['ATM'].pop('Hackable')
+                        if hacked_token == True:
+                             Coins += 250
+                             msg = "You have successfully hacked the ATM and withdrawn $250!"
+                             stolen_atm = True
+                             map_rooms['ATM'].pop('Hackable')
+                             hacked_token = False
+                             hacked_value = hacked_value + 1
+                        else:
+                            console.print("[bold purple]Try again.")
                     else:
                         msg = "You need a laptop to hack the ATM. Try searching the HQ for an old laptop or buy a new one from the Shopping Center!"
                 else:
@@ -137,9 +158,13 @@ def Game():
                     if device == 'camera system' and not hacked_camera:
                         if 'Bank Disguise' in inventory:
                             hacking_screen()
-                            msg = "You have successfully hacked the bank's camera system. You can now move freely without being caught."
-                            hacked_camera = True
-                            map_rooms['Bank Entrance'].pop('Hackable')
+                            if hacked_token == True:
+                                msg = "You have successfully hacked the bank's camera system. You can now move freely without being caught."
+                                hacked_camera = True
+                                map_rooms['Bank Entrance'].pop('Hackable')
+                                hacked_value = hacked_value + 1
+                            else:
+                                console.print("[bold purple]Try again.")
                         else:
                             msg = "You need the bank disguise from the apartment to do actions inside the bank."
                     elif device == 'archive database' and not hacked_archive:
@@ -189,5 +214,11 @@ map_rooms = { 'The HQ' : {'East' : 'Main Street', 'Item': 'Old Laptop'},
              'Bank Server Room' : {'South' : 'Bank Entrance', 'Hackable' : 'bank Servers'},
              'Bank Office Room' : {'West' : 'Bank Entrance', 'East' : 'Vault', 'Hackable' : "manager's pc"},
              'Vault' : {'West' : 'Bank Office Room', 'Hackable' : 'vault Protection System'} }
+password_patterns = {'First' : {'1': '7x9kQwTz8pLk3Jv', '2':'4mN2bXcV9kQwTz', '3' : '9kQwTz5rTgH8sQw', '4' : 'QwTz7uYhLk9kQwTz3', 'Answer' : '9kQwTz'},
+                     'Second' : {'1':'2pL8rXy7mNqL', '2':'5tGhLpL8rXy', '3':'8pL8rXy6vBnMp', '4':'3kLpL8rXy9', 'Answer':'pL8rXy'},
+                      'Third' : {'1':'1Zx7LmN2b', '2':'3nMZx7LmN', '3':'4Zx7LmN5t', '4':'6p7Zx7LmNN', 'Answer':'Zx7LmN'},
+                       'Fourth' : {'1':'tR5qLp8nM', '2':'2tR5qLp3bN', '3':'4tR5qL5vGtR5qLp', '4':'6tR5qLp7kL', 'Answer':'tR5qLp'},
+                        'Fifth' : {'1':'1Qp8zLm2b3', '2':'4nMQp8zLm', '3':'5Qp8zLm6t7', '4':'8pQp8zLm9N', 'Answer':'Qp8zLm'},
+                         'Sixth' : {'1':'vT3kXy1a2b', '2':'3c4vT3kXy5d', '3':'6e7f8vT3kXy', '4':'9g0h1vT3kXy2', 'Answer':'vT3kXy'} }
 clear()
 prompt()
