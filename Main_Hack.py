@@ -65,6 +65,7 @@ def hacking_screen():
         console.print("[bold green]Hack this system by finding repeating patterns in the passwords below: ")
         correct_answer = password_patterns['Fifth']['Answer']
         console.print(f"[bold yellow]{password_patterns['Fifth']['1']}\n{password_patterns['Fifth']['2']}\n{password_patterns['Fifth']['3']}\n{password_patterns['Fifth']['3']}\n{password_patterns['Fifth']['4']}")
+        user_answer = input("Enter the repeating pattern: ").strip().lower()
         if user_answer == correct_answer.lower():
             console.print("[bold green]You have successfully breached this system.")
             hacked_token = True
@@ -167,6 +168,7 @@ def Game():
                             inventory.append(shop_item_title)
                             Coins -= price
                             msg = f"You bought the {shop_item_title} for ${price}."
+                            map_rooms['Shopping Center'].pop('Buy Item')
                         else:
                             msg = f"You already own the {shop_item_title}."
                     else:
