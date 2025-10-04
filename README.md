@@ -21,10 +21,6 @@ Hack Quest is a text-based adventure game where you play as a hacker trying to b
 - Python 3.7 or higher
 - Rich
 
-## Files
-- `Main_Hack.py` — Main CLI game logic
-- `passwords_patterns.txt` — Password patterns for hacking puzzles, Not used by the program but intended for the user if he wants to bypass hacking.
-
 ## Upcoming
 - GUI Version of the game or possibly a 2D game with animations!
 - Game improvements such as more Inventory management, extended map locations and story.
