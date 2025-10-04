@@ -210,9 +210,12 @@ def Game():
                         if hacked_camera:
                             if any(lap in [item.lower() for item in inventory] for lap in ['new laptop']):
                                 hacking_screen()
-                                msg = 'You have successfully hacked into the bank archives and found the codes. You now need to hack the bank servers.'
-                                hacked_archive = True
-                                map_rooms['Bank Archives Room'].pop('Hackable')
+                                if hacked_token == True:
+                                    msg = 'You have successfully hacked into the bank archives and found the codes. You now need to hack the bank servers.'
+                                    hacked_archive = True
+                                    map_rooms['Bank Archives Room'].pop('Hackable')
+                                    hacked_token = False
+                                    hacked_value = hacked_value + 1
                             else:
                                 msg = "You need a better laptop to hack the bank systems. Try buying one from the shopping center."
                         else:
@@ -220,20 +223,27 @@ def Game():
                     elif device == 'bank servers' and not hacked_database:
                         if hacked_archive:
                             hacking_screen()
-                            msg = "You have successfully hacked into the bank servers and found the manager's PC digits. Proceed to the office area and hack the vault's security system blueprint and passcode."
-                            hacked_database = True
-                            map_rooms['Bank Server Room'].pop('Hackable')
+                            if hacked_token == True:
+                                msg = "You have successfully hacked into the bank servers and found the manager's PC digits. Proceed to the office area and hack the vault's security system blueprint and passcode."
+                                hacked_database = True
+                                map_rooms['Bank Server Room'].pop('Hackable')
+                                hacked_token = False
+                                hacked_value = hacked_value + 1
                         else:
                             msg = "You need to hack the bank archives first."
                     elif device == "manager's pc" and hacked_database and not hacked_office:
                         hacking_screen()
-                        msg = "You have successfully hacked into the manager's PC and found the vault's security system blueprint and passcode. Proceed to the vault and hack the protection system."
-                        hacked_office = True
-                        map_rooms['Bank Office Room'].pop('Hackable')
+                        if hacked_token == True:
+                            msg = "You have successfully hacked into the manager's PC and found the vault's security system blueprint and passcode. Proceed to the vault and hack the protection system."
+                            hacked_office = True
+                            map_rooms['Bank Office Room'].pop('Hackable')
+                            hacked_token = False
+                            hacked_value = hacked_value + 1
                     elif device == 'vault protection system' and hacked_office:
                         hacking_screen()
-                        msg = "You have successfully hacked into the bank's vault protection system. The cash is yours!\nThank you for playing Hack Quest!"
-                        Coins += 1000000
+                        if hacked_token == True:
+                            msg = "You have successfully hacked into the bank's vault protection system. The cash is yours!\nThank you for playing Hack Quest!"
+                            Coins += 1000000
                     else:
                         msg = "You can't hack this system right now."
                     if Coins >= 1000000:
