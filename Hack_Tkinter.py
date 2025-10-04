@@ -30,14 +30,20 @@ gui.geometry("700x450")
 gui.config(bg="PeachPuff")
 gui.resizable(False, False)
 def check_dropdown():
-    print(selected_menu.get())
+    global prompt_variable
+    a = selected_menu.get()
+    if a.lower() == 'start':
+        print("change stuff and start game.")
+    elif a.lower() == 'instructions':
+        prompt_variable.set("Instructions: Welcome to Hack Quest!\n Your objective is to hack into the bank's vault and\n steal the money without getting caught.\nYou can move between rooms, collect items, and\n hack systems to progress.Use the drop down menu\n to excute actions.Good luck, hacker!")
 prompt_variable = tk.StringVar()
 menu_list = ['Start', 'Instructions']
 selected_menu = tk.StringVar()
+selected_menu.set(menu_list[0])  # Set default value to 'Start'
 drop_down = tk.OptionMenu(gui, selected_menu, *menu_list)
 drop_down.config(bg='light pink', borderwidth='1', relief='solid', width=60, height=1)
 prompt_variable.set("Choose Start to start, Instructions to learn how to play or close the window to exit.")
-prompt_label = tk.Label(gui, textvariable=prompt_variable, bg='light pink', font=("Arial", 12, 'bold'), borderwidth='2', wraplength=695, height=6, relief='solid')
+prompt_label = tk.Label(gui, textvariable=prompt_variable, bg='light pink', font=("Arial", 12, 'bold'), borderwidth='2', relief='solid', height='7', justify='left', width='69')
 confirm_button = tk.Button(gui, text='Confirm', height=1, width=4, relief='solid', borderwidth=2, command=check_dropdown, bg='light pink')
 prompt_label.place(x=36, y=20)
 drop_down.place(x=80, y=300)
@@ -60,7 +66,7 @@ password_patterns = {'First' : {'1': '7x9kQwTz8pLk3Jv', '2':'4mN2bXcV9kQwTz', '3
                        'Fourth' : {'1':'tR5qLp8nM', '2':'2tR5qLp3bN', '3':'4tR5qL5vGtR5qLp', '4':'6tR5qLp7kL', 'Answer':'tR5qLp'},
                         'Fifth' : {'1':'1Qp8zLm2b3', '2':'4nMQp8zLm', '3':'5Qp8zLm6t7', '4':'8pQp8zLm9N', 'Answer':'Qp8zLm'},
                          'Sixth' : {'1':'vT3kXy1a2b', '2':'3c4vT3kXy5d', '3':'6e7f8vT3kXy', '4':'9g0h1vT3kXy2', 'Answer':'vT3kXy'} }
-## Room & Item Images (must be loaded after root window is created)
+## Room & Item Images 
 def load_images():
     global hq, old_laptop, main_street, lost_wallet, internet_cafe, tip_jar, atm, atm_cash, apartment, disguise, new_laptop, usb, east_street, shopping_center, bank_entrance, cameras, server_room, servers, archive_room, archives, office_room, office, vault_room, vault
     hq = PhotoImage(file=resource_path('hq_converted.png'))
