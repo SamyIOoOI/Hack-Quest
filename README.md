@@ -27,7 +27,7 @@ Hack Quest is a adventure game where you play as a hacker trying to break into a
 - Game improvements such as more Inventory management, extended map locations and story.
 
 ## Notes
--The current release is linux only. The code itself however supports windows and linux. You can download Main_Hack.py and run it using python IDE or command line.
+- The current release is linux only. The code itself however supports windows and linux. You can download Main_Hack.py and run it using python IDE or command line.
 
 ## License
 MIT License
