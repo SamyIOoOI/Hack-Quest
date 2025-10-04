@@ -8,7 +8,6 @@ Hack Quest is a text-based adventure game where you play as a hacker trying to b
 - Explore different rooms and locations.
 - Collect and use items.
 - Hack various systems with password puzzles.
-- Buy a better hacking laptop.
 - Item Inventory.
 - Coin System.
 
