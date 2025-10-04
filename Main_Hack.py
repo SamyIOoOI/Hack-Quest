@@ -15,20 +15,20 @@ hacked_office = False
 hacked_value = 1
 hacked_token = False
 msg = ''
-def hacking_screen():
+def hacking_screen(): ## Universal hack function
     global hacked_token, hacked_value
-    if hacked_value == 1:
+    if hacked_value == 1: ## Checks which hack it should deploy based on how many are already finished.
         console.print("[bold green]Hack this system by finding the repeating pattern in the passwords below: ")
         console.print("[yellow]If you intend on cheating... https://github.com/SamyIOoOI/Hack-Quest/blob/main/passwords_patterns.txt")
-        correct_answer = password_patterns['First']['Answer']
+        correct_answer = password_patterns['First']['Answer'] ## Sets the answer in a variable for later comparison
         console.print(f"[bold yellow]{password_patterns['First']['1']}\n{password_patterns['First']['2']}\n{password_patterns['First']['3']}\n{password_patterns['First']['4']}")
-        user_answer = input("Enter the repeating pattern: ").strip().lower()
-        if user_answer == correct_answer.lower():
-            console.print("[bold green]You have successfully breached this system.")
-            hacked_token = True
+        user_answer = input("Enter the repeating pattern: ").strip().lower() ## Receives user input
+        if user_answer == correct_answer.lower(): ## Comapres user input and the answer
+            console.print("[bold green]You have successfully breached this system.") ## Not much use. Informs the user of his success.
+            hacked_token = True ## The token required by the hack command to give the player the reward.
         else:
-            console.print("[bold red]Incorrect pattern. Hack failed.")
-            hacked_token = False
+            console.print("[bold red]Incorrect pattern. Hack failed.") ## Informs the user of his failure.
+            hacked_token = False ## Not really necessary but just in case something goes wrong. Hacked token is already false by default.
     if hacked_value == 2:
         console.print("[bold green]Hack this system by finding the repeating pattern in the passwords below: ")
         console.print("[yellow]If you intend on cheating... https://github.com/SamyIOoOI/Hack-Quest/blob/main/passwords_patterns.txt")
@@ -89,9 +89,9 @@ def hacking_screen():
         else:
             console.print("[bold red]Incorrect pattern. Hack failed.")
             hacked_token = False
-def clear():    
-    os.system('cls' if os.name == 'nt' else 'clear')
-def prompt():
+def clear():  ## Clears the terminal before starting the game.
+    os.system('cls' if os.name == 'nt' else 'clear') ## Checks the user's operating system and assigns the clear command based on that.
+def prompt(): ## Option Menu or "Main Menu" of the game.
     clear()
     console.print("You can access the map here: [underline blue]https://github.com/SamyIOoOI/Hack-Quest/blob/main/Map.png[/underline blue]")
     a = input("Press Y to start, H to learn how to play or Q to quit: ").lower()
@@ -106,14 +106,14 @@ def prompt():
         clear()
         console.print("[bold green]Thanks for playing Hack Quest! Goodbye!")
         exit()
-def Game():
+def Game(): ## Main game function
     global current_room, Coins, inventory, stolen_atm, hacked_camera, hacked_office, hacked_database, hacked_archive, msg, hacked_token, hacked_value
     msg = ''
-    while True:
+    while True: ## Game Loop
         clear()
-        if not inventory:
+        if not inventory: ## Displays the stats, when the inventory is empty
             console.print(f"[bold green]Hack Quest\n[bold green]----------------------\n[green][italic]Cracking codes like 1998.[/italic]\n[bold green]----------------------\nYou are currently in {current_room}.\n[bold green]----------------------\n[bold yellow]Inventory: Empty │ Coins: {Coins}\n[bold green]----------------------\n{msg}")
-        else:
+        else: ## Displays the stats, when the inventory isn't empty
             console.print(f"[bold green]Hack Quest\n[bold green]----------------------\n[green][italic]Cracking codes like 1998.[/italic]\n[bold green]----------------------\nYou are currently in {current_room}.\n[bold green]----------------------\n[bold yellow]Inventory: {inventory} │ coins: {Coins}\n[bold green]----------------------\n{msg}") 
         if 'Item' in map_rooms[current_room].keys(): ## Nearby Item Detection
             nearby_item = map_rooms[current_room]["Item"]
@@ -122,10 +122,10 @@ def Game():
                     console.print(f"[bold green]You see an[bold yellow] {nearby_item} [bold green]here. Type 'get' to pick it up.")
                 else:
                     console.print(f"[bold green]You see a [bold yellow] {nearby_item} [bold green]here. Type 'get' to pick it up.")
-        if 'Buy Item' in map_rooms[current_room]:
+        if 'Buy Item' in map_rooms[current_room]: ## Purchase finder
             shop_item = map_rooms[current_room]['Buy Item']
             console.print(f"[bold cyan]You can buy [bold yellow]{shop_item.title()}[bold cyan] here. Type 'buy {shop_item}' to purchase it.")
-        if 'Hackable' in map_rooms[current_room]:
+        if 'Hackable' in map_rooms[current_room]: ## Hackable finder
             hackable_device = map_rooms[current_room]['Hackable']
             console.print(f"[bold magenta]You can attempt to hack the [bold yellow]{hackable_device.title()}[bold magenta] here. Type 'hack {hackable_device}' to try.")
         user_input = input("What will you do?\n")
@@ -135,13 +135,13 @@ def Game():
             item = split_user_input[1:]
             direction = split_user_input[1].title()
             item = ' '.join(item).title()
-        if action == 'Go':
+        if action == 'Go': ## Move function
             try:
                 current_room = map_rooms[current_room][direction]
                 msg = f"You moved to the {current_room}."
             except:
                 msg = "You can't go that way."
-        if action == 'Get':
+        if action == 'Get': ## Snatch function
             room_data = map_rooms[current_room]
             room_item = room_data.get('Item', None)
             if room_item and item.lower() == room_item.lower() and room_item not in inventory:
@@ -160,7 +160,7 @@ def Game():
                 msg = f"You already picked up the {room_item}."
             else:
                 msg = "There is no such item here."
-        if action == 'Buy':
+        if action == 'Buy': ## Buy function
             if 'Buy Item' in map_rooms[current_room]:
                 shop_item = map_rooms[current_room]['Buy Item']
                 shop_item_title = shop_item.title()
@@ -183,7 +183,7 @@ def Game():
                     msg = f"You can't buy that here."
             else:
                 msg = "There is nothing to buy here."
-        if action == 'Hack':
+        if action == 'Hack': ## Hack function
             if 'Hackable' in map_rooms[current_room]:
                 hackable_device = map_rooms[current_room]['Hackable']
                 device = hackable_device.strip().lower()
@@ -259,7 +259,7 @@ def Game():
                         break
             else:
                 msg = "There is nothing to hack here."
-map_rooms = { 'The HQ' : {'East' : 'Main Street', 'Item': 'Old Laptop'},
+map_rooms = { 'The HQ' : {'East' : 'Main Street', 'Item': 'Old Laptop'}, ## Map Database
              'Main Street' : {'West' : 'The HQ', 'North' : 'Internet Cafe', 'South' : 'ATM', 'East' : 'East Street', 'Item': 'Lost Wallet'},
              'Internet Cafe' : {'South' : 'Main Street', 'Item' : 'Tip Jar'},
              'ATM' : {'North' : 'Main Street', 'Hackable' : 'ATM Cash'},
@@ -270,7 +270,7 @@ map_rooms = { 'The HQ' : {'East' : 'Main Street', 'Item': 'Old Laptop'},
              'Bank Archives Room' : {'North' : 'Bank Entrance', 'Hackable' : 'archive Database'},
              'Bank Server Room' : {'South' : 'Bank Entrance', 'Hackable' : 'bank Servers'},
              'Bank Office Room' : {'West' : 'Bank Entrance', 'East' : 'Vault', 'Hackable' : "manager's pc"},
-             'Vault' : {'West' : 'Bank Office Room', 'Hackable' : 'vault Protection System'} }
+             'Vault' : {'West' : 'Bank Office Room', 'Hackable' : 'vault Protection System'} } ## Passwords Database
 password_patterns = {'First' : {'1': '7x9kQwTz8pLk3Jv', '2':'4mN2bXcV9kQwTz', '3' : '9kQwTz5rTgH8sQw', '4' : 'QwTz7uYhLk9kQwTz3', 'Answer' : '9kQwTz'},
                      'Second' : {'1':'2pL8rXy7mNqL', '2':'5tGhLpL8rXy', '3':'8pL8rXy6vBnMp', '4':'3kLpL8rXy9', 'Answer':'pL8rXy'},
                       'Third' : {'1':'1Zx7LmN2b', '2':'3nMZx7LmN', '3':'4Zx7LmN5t', '4':'6p7Zx7LmNN', 'Answer':'Zx7LmN'},
