@@ -1,0 +1,2 @@
+[console_scripts]
+hackquest = Main_Hack:main
