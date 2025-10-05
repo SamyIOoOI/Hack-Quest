@@ -131,20 +131,27 @@ def Game(): ## Main game function
         user_input = input("What will you do?\n")
         split_user_input = user_input.split(' ')
         action = split_user_input[0].title()
+        item = None
+        direction = None
         if len(split_user_input) > 1:
             item = split_user_input[1:]
             direction = split_user_input[1].title()
             item = ' '.join(item).title()
         if action == 'Go': ## Move function
-            try:
-                current_room = map_rooms[current_room][direction]
-                msg = f"You moved to the {current_room}."
-            except:
-                msg = "You can't go that way."
+            if direction:
+                try:
+                    current_room = map_rooms[current_room][direction]
+                    msg = f"You moved to the {current_room}."
+                except:
+                    msg = "You can't go that way."
+            else:
+                msg = "Please specify a direction to go."
         if action == 'Get': ## Snatch function
             room_data = map_rooms[current_room]
             room_item = room_data.get('Item', None)
-            if room_item and item.lower() == room_item.lower() and room_item not in inventory:
+            if not item:
+                msg = "Please specify what item you want to get."
+            elif room_item and item.lower() == room_item.lower() and room_item not in inventory:
                 inventory.append(room_item)
                 msg = f"You snatched the {room_item}."
                 del map_rooms[current_room]['Item']
