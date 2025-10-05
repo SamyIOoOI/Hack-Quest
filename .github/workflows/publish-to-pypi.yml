@@ -1,4 +1,4 @@
-name: hack_quest
+name: Hack-Quest-CLI
 
 on:
   push:
