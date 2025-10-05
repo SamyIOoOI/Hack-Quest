@@ -1,4 +1,4 @@
-name: hack quest pypi
+name: hack_quest
 
 on:
   push:
