@@ -3,8 +3,8 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "hackquestcli"
-version = "0.1.0"
+name = "Hack-Quest-CLI"
+version = "1.0.0"
 description = "A CLI adventure game where you play as a hacker trying to break into a bank vault."
 authors = [
     { name="Samy0_o", email="samytonygo@gmail.com" }
@@ -17,4 +17,4 @@ dependencies = [
 license = { file = "LICENSE" }
 
 [project.scripts]
-hackquest = "Main_Hack:main"
+Hack-Quest-CLI = "Main_Hack:main"

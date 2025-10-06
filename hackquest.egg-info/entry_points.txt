@@ -1,2 +1,2 @@
 [console_scripts]
-hackquest = Main_Hack:main
+Hack-Quest-CLI = Main_Hack:main
