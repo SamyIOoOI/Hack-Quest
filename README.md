@@ -35,6 +35,7 @@ https://github.com/user-attachments/assets/a6a11870-6b5d-4824-bd8f-d0be5bcd820f
 ## Notes
 - The current release is linux only. The code itself however supports windows and linux. You can download Main_Hack.py and run it using python IDE or command line.
 - The Pypi package could not be published at the mean time due to bad internet and technical issues, so publishing was delayed for now
+- The go command uses (north-south-east-west) not up, down, left and right
 
 ## Requirements
 - rich
