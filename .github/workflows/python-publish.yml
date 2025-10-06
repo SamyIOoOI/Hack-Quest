@@ -4,21 +4,44 @@ on:
   push:
     tags:
       - 'v*' # Triggers on tags like v1.0.0
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to publish (without v prefix)'
+        required: true
+        type: string
+        default: '1.0.0'
+      skip_publish:
+        description: 'Skip PyPI publish (build only)'
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
+      
       - name: Install build dependencies
         run: python -m pip install --upgrade pip build
+      
       - name: Build package
         run: python -m build
+      
+      - name: Display build info
+        run: |
+          echo "Manual trigger: ${{ github.event_name == 'workflow_dispatch' }}"
+          echo "Requested version: ${{ github.event.inputs.version }}"
+          echo "Skip publish: ${{ github.event.inputs.skip_publish }}"
+      
       - name: Publish package to PyPI
+        if: ${{ github.event.inputs.skip_publish != true }}
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           user: __token__
