@@ -14,9 +14,9 @@ requires-python = ">=3.7"
 dependencies = [
     "rich"
 ]
-license = { file = "LICENSE" }
+license = { text = "MIT" }  # Changed from { file = "LICENSE" }
 
 [project.scripts]
-hack-quest = "Main_Hack:main"
+hack-quest = "hack_quest.main:main"  # Make sure this matches your actual structure
 
 [tool.setuptools.packages.find]
