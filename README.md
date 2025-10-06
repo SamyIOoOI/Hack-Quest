@@ -18,8 +18,11 @@ Hack Quest is a adventure game where you play as a hacker trying to break into a
 3. If you're confused use the help command! (H)
 
 ## Demo Video
-- The demo video is in the repository and can be accessed/downloaded here: https://github.com/SamyIOoOI/Hack-Quest/blob/main/DemoVideo.webm
-  
+
+
+https://github.com/user-attachments/assets/a6a11870-6b5d-4824-bd8f-d0be5bcd820f
+
+
 ## Requirements CLI
 - Python 3.7 or higher
 - Rich
