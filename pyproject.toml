@@ -19,5 +19,4 @@ license = { file = "LICENSE" }
 [project.scripts]
 hack-quest = "Main_Hack:main"
 
-[tool.setuptools]
-packages = ["."]
+[tool.setuptools.packages.find]
