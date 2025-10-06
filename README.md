@@ -23,7 +23,7 @@ Hack Quest is a adventure game where you play as a hacker trying to break into a
 https://github.com/user-attachments/assets/a6a11870-6b5d-4824-bd8f-d0be5bcd820f
 
 ## PYPI Publish
-- https://pypi.org/project/Hack-Quest-CLI/1.0.0/
+- https://pypi.org/project/hack-quest-cli/1.0.1/
 
 ## Requirements CLI
 - Python 3.7 or higher
@@ -36,7 +36,6 @@ https://github.com/user-attachments/assets/a6a11870-6b5d-4824-bd8f-d0be5bcd820f
 
 ## Notes
 - The current release is linux only. The code itself however supports windows and linux. You can download Main_Hack.py and run it using python IDE or command line.
-- The Pypi package could not be published at the mean time due to bad internet and technical issues, so publishing was delayed for now
 - The go command uses (north-south-east-west) not up, down, left and right
 
 ## Requirements
