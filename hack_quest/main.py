@@ -15,6 +15,7 @@ hacked_archive = False
 hacked_office = False
 hacked_value = 1
 hacked_token = False
+game_completed = False
 msg = ''
 
 def hacking_screen(): ## Universal hack function
@@ -94,8 +95,50 @@ def hacking_screen(): ## Universal hack function
 
 def clear():  ## Clears the terminal before starting the game.
     os.system('cls' if os.name == 'nt' else 'clear') ## Checks the user's operating system and assigns the clear command based on that.
-
-def prompt(): ## Option Menu or "Main Menu" of the game.
+def victory_sequence():
+    clear()
+    console.print("[bold magenta]" + "="*60)
+    console.print("[bold magenta] VICTORY ACHIEVED! ")
+    console.print("[bold magenta]" + "="*60)
+    console.print(f"[bold green]Congratulations, master hacker!")
+    console.print(f"[bold yellow]You have successfully infiltrated the bank and stolen $1,000,000!")
+    console.print(f"[bold cyan]Total coins: {Coins}")
+    console.print(f"[bold green]Final inventory: {inventory}")
+    console.print("\n[bold magenta]Your hacking journey:")
+    console.print("[green]✓ Hacked ATM for quick cash")
+    console.print("[green]✓ Infiltrated bank security systems")
+    console.print("[green]✓ Breached archives and servers")
+    console.print("[green]✓ Cracked the manager's PC")
+    console.print("[green]✓ Finally conquered the vault protection system!")
+    console.print("\n[bold yellow]You are now a legendary hacker!")
+    console.print("[bold magenta]" + "="*60)
+    input("\nPress Enter to return to the main menu...")
+def prompt():
+    global current_room, Coins, inventory, stolen_atm, hacked_camera, hacked_database, hacked_archive, hacked_office, hacked_value, hacked_token, game_completed
+    if game_completed:
+        current_room = 'The HQ'
+        Coins = 0
+        inventory = []
+        stolen_atm = False
+        hacked_camera = False
+        hacked_database = False
+        hacked_archive = False
+        hacked_office = False
+        hacked_value = 1
+        hacked_token = False
+        game_completed = False
+        map_rooms['The HQ']['Item'] = 'Old Laptop'
+        map_rooms['Main Street']['Item'] = 'Lost Wallet'
+        map_rooms['Internet Cafe']['Item'] = 'Tip Jar'
+        map_rooms['East Street']['Item'] = 'Hacking USB'
+        map_rooms['Apartment']['Item'] = 'Bank Disguise'
+        map_rooms['Shopping Center']['Buy Item'] = 'new Laptop'
+        map_rooms['ATM']['Hackable'] = 'ATM Cash'
+        map_rooms['Bank Entrance']['Hackable'] = 'camera System'
+        map_rooms['Bank Archives Room']['Hackable'] = 'archive Database'
+        map_rooms['Bank Server Room']['Hackable'] = 'bank Servers'
+        map_rooms['Bank Office Room']['Hackable'] = "manager's pc"
+        map_rooms['Vault']['Hackable'] = 'vault Protection System'
     clear()
     console.print("You can access the map here: [underline blue]https://github.com/SamyIOoOI/Hack-Quest/blob/main/Map.png[/underline blue]")
     a = input("Press Y to start, H to learn how to play or Q to quit: ").lower()
@@ -111,36 +154,32 @@ def prompt(): ## Option Menu or "Main Menu" of the game.
         console.print("[bold green]Thanks for playing Hack Quest! Goodbye!")
         exit()
 
-def Game(): ## Main game function
-    global current_room, Coins, inventory, stolen_atm, hacked_camera, hacked_office, hacked_database, hacked_archive, msg, hacked_token, hacked_value
+def Game(): 
+    global current_room, Coins, inventory, stolen_atm, hacked_camera, hacked_office, hacked_database, hacked_archive, msg, hacked_token, hacked_value, game_completed
     msg = ''
-    while True: ## Game Loop
+    while True: 
         clear()
-        if not inventory: ## Displays the stats, when the inventory is empty
+        if not inventory:
             console.print(f"[bold green]Hack Quest\n[bold green]----------------------\n[green][italic]Cracking codes like 1998.[/italic]\n[bold green]----------------------\nYou are currently in {current_room}.\n[bold green]----------------------\n[bold yellow]Inventory: Empty │ Coins: {Coins}\n[bold green]----------------------\n{msg}")
-        else: ## Displays the stats, when the inventory isn't empty
+        else:
             console.print(f"[bold green]Hack Quest\n[bold green]----------------------\n[green][italic]Cracking codes like 1998.[/italic]\n[bold green]----------------------\nYou are currently in {current_room}.\n[bold green]----------------------\n[bold yellow]Inventory: {inventory} │ coins: {Coins}\n[bold green]----------------------\n{msg}") 
-        if 'Item' in map_rooms[current_room].keys(): ## Nearby Item Detection
+        if 'Item' in map_rooms[current_room].keys():
             nearby_item = map_rooms[current_room]["Item"]
             if nearby_item not in inventory:
                 if nearby_item[0].lower() in vowel_var:
                     console.print(f"[bold green]You see an[bold yellow] {nearby_item} [bold green]here. Type 'get' to pick it up.")
                 else:
                     console.print(f"[bold green]You see a [bold yellow] {nearby_item} [bold green]here. Type 'get' to pick it up.")
-        if 'Buy Item' in map_rooms[current_room]: ## Purchase finder
+        if 'Buy Item' in map_rooms[current_room]:
             shop_item = map_rooms[current_room]['Buy Item']
             console.print(f"[bold cyan]You can buy [bold yellow]{shop_item.title()}[bold cyan] here. Type 'buy {shop_item}' to purchase it.")
-        if 'Hackable' in map_rooms[current_room]: ## Hackable finder
+        if 'Hackable' in map_rooms[current_room]:
             hackable_device = map_rooms[current_room]['Hackable']
             console.print(f"[bold magenta]You can attempt to hack the [bold yellow]{hackable_device.title()}[bold magenta] here. Type 'hack {hackable_device}' to try.")
-        
-        user_input = input("What will you do?\n")
-        
-        # Allow quitting from the game
+        user_input = input("What will you do?\n").strip()
         if user_input.lower() == 'q':
             console.print("[bold green]Thanks for playing Hack Quest! Goodbye!")
             exit()
-            
         split_user_input = user_input.split(' ')
         action = split_user_input[0].title()
         item = None
@@ -149,8 +188,7 @@ def Game(): ## Main game function
             item = split_user_input[1:]
             direction = split_user_input[1].title()
             item = ' '.join(item).title()
-            
-        if action == 'Go': ## Move function
+        if action == 'Go': 
             if direction:
                 try:
                     current_room = map_rooms[current_room][direction]
@@ -159,8 +197,7 @@ def Game(): ## Main game function
                     msg = "You can't go that way."
             else:
                 msg = "Please specify a direction to go. Example: 'go north'"
-                
-        elif action == 'Get': ## Snatch function
+        elif action == 'Get':
             room_data = map_rooms[current_room]
             room_item = room_data.get('Item', None)
             if not item:
@@ -181,8 +218,7 @@ def Game(): ## Main game function
                 msg = f"You already picked up the {room_item}."
             else:
                 msg = "There is no such item here."
-                
-        elif action == 'Buy': ## Buy function
+        elif action == 'Buy': 
             if 'Buy Item' in map_rooms[current_room]:
                 shop_item = map_rooms[current_room]['Buy Item']
                 shop_item_title = shop_item.title()
@@ -205,8 +241,7 @@ def Game(): ## Main game function
                     msg = f"You can't buy that here."
             else:
                 msg = "There is nothing to buy here."
-                
-        elif action == 'Hack': ## Hack function
+        elif action == 'Hack':
             if 'Hackable' in map_rooms[current_room]:
                 hackable_device = map_rooms[current_room]['Hackable']
                 device = hackable_device.strip().lower()
@@ -273,13 +308,13 @@ def Game(): ## Main game function
                     elif device == 'vault protection system' and hacked_office:
                         hacking_screen()
                         if hacked_token == True:
-                            msg = "You have successfully hacked into the bank's vault protection system. The cash is yours!\nThank you for playing Hack Quest!"
+                            msg = "You have successfully hacked into the bank's vault protection system!"
                             Coins += 1000000
+                            game_completed = True
+                            victory_sequence()
+                            return 
                     else:
                         msg = "You can't hack this system right now."
-                    if Coins >= 1000000:
-                        console.print("[bold purple] You have successfully hacked into the bank's vault protection system. The cash is yours!\n[bold magenta] Congratulations, you have completed Hack Quest and earned $1,000,000!\n[bold green]Thank you for playing Hack Quest!")
-                        break
             else:
                 msg = "There is nothing to hack here."
         elif action == 'Inventory': ## Inventory command
@@ -289,7 +324,6 @@ def Game(): ## Main game function
                 msg = "Your inventory is empty."
         else:
             msg = "Invalid command. Type 'go [direction]', 'get [item]', 'hack [system]', 'buy [item]', 'inventory', or 'q' to quit."
-
 map_rooms = { 'The HQ' : {'East' : 'Main Street', 'Item': 'Old Laptop'}, ## Map Database
              'Main Street' : {'West' : 'The HQ', 'North' : 'Internet Cafe', 'South' : 'ATM', 'East' : 'East Street', 'Item': 'Lost Wallet'},
              'Internet Cafe' : {'South' : 'Main Street', 'Item' : 'Tip Jar'},
@@ -309,10 +343,9 @@ password_patterns = {'First' : {'1': '7x9kQwTz8pLk3Jv', '2':'4mN2bXcV9kQwTz', '3
                        'Fourth' : {'1':'tR5qLp8nM', '2':'2tR5qLp3bN', '3':'4tR5qL5vGtR5qLp', '4':'6tR5qLp7kL', 'Answer':'tR5qLp'},
                         'Fifth' : {'1':'1Qp8zLm2b3', '2':'4nMQp8zLm', '3':'5Qp8zLm6t7', '4':'8pQp8zLm9N', 'Answer':'Qp8zLm'},
                          'Sixth' : {'1':'vT3kXy1a2b', '2':'3c4vT3kXy5d', '3':'6e7f8vT3kXy', '4':'9g0h1vT3kXy2', 'Answer':'vT3kXy'} }
-
 def main():
     clear()
-    prompt()
-
+    while True:
+        prompt()
 if __name__ == "__main__":
     main()
