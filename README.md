@@ -24,6 +24,7 @@ https://github.com/user-attachments/assets/a6a11870-6b5d-4824-bd8f-d0be5bcd820f
 
 ## PYPI Publish
 - https://pypi.org/project/hack-quest-cli/1.0.1/
+- To install run this in your terminal / command prompt: *pip install hack-quest-cli*
 
 ## Requirements CLI
 - Python 3.7 or higher
@@ -35,7 +36,6 @@ https://github.com/user-attachments/assets/a6a11870-6b5d-4824-bd8f-d0be5bcd820f
 - Game improvements such as more Inventory management, extended map locations and story.
 
 ## Notes
-- The current release is linux only. The code itself however supports windows and linux. You can download Main_Hack.py and run it using python IDE or command line.
 - The go command uses (north-south-east-west) not up, down, left and right
 
 ## Requirements
