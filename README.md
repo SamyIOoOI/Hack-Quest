@@ -13,7 +13,7 @@ Hack Quest is a adventure game where you play as a hacker trying to break into a
 
 ## How to Play
 
-1. First, install the CLI through the terminal/cmd with the command below.
+1. First, install the CLI through the terminal/cmd with the command below. Type [hack-quest] in your terminal to start the game.
 2. Secondly, take a look at the map found in this repository as map.png or as a link when you select y to start in the game.
 3. To move in the map you write go [direction] such as east, west, south, west. Relative to your position on the map.
 4. Most locations have Items that you can either pick [get [itemname]] Or buy [buy[itemname]] or hack (minigame) [hack[itemname]]
