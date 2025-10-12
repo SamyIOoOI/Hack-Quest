@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hack-quest-cli"
-version = "1.0.1"
+version = "1.0.2"
 description = "A CLI adventure game where you play as a hacker trying to break into a bank vault."
 authors = [
     { name="Samy0_o", email="samytonygo@gmail.com" }
