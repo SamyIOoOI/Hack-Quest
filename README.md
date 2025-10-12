@@ -13,9 +13,13 @@ Hack Quest is a adventure game where you play as a hacker trying to break into a
 
 ## How to Play
 
-1. Follow the on-screen prompts to move, hack, buy, and interact with the world.
-2. Use your wits to solve hacking puzzles and progress through the story.
-3. If you're confused use the help command! (H)
+1. First, install the CLI through the terminal/cmd with the command below.
+2. Secondly, take a look at the map found in this repository as map.png or as a link when you select y to start in the game.
+3. To move in the map you write go [direction] such as east, west, south, west. Relative to your position on the map.
+4. Most locations have Items that you can either pick [get [itemname]] Or buy [buy[itemname]] or hack (minigame) [hack[itemname]]
+5. The Inventory actively updates once you get or buy new items.
+6. The goal is to gather money to get a the equipment needed to hack the bank system's and breach the vault.
+7. If you're still confused use the help command! (H)
 
 ## Demo Video
 
